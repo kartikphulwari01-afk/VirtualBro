@@ -1,0 +1,124 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+    @apply bg-cyber-bg text-gray-200 font-sans;
+  }
+}
+
+.zoro-root {
+  position: fixed;
+  top: 0;
+  left: 80px;
+  width: calc(100% - 80px);
+  height: 100vh;
+  display: flex;
+  overflow: hidden;
+}
+
+.chat-container {
+  flex: 1;
+  overflow-y: auto;
+  height: 100%;
+}
+
+@layer utilities {
+  .glass-panel {
+    @apply bg-cyber-panel/60 backdrop-blur-xl border border-white/10 shadow-lg transition-all duration-300 rounded-2xl;
+  }
+  
+  .glass-panel:hover {
+    @apply border-white/20 shadow-[0_0_20px_rgba(255,255,255,0.05)];
+  }
+
+  .neon-border {
+    position: relative;
+    border: 1px solid rgba(0, 255, 156, 0.3);
+    box-shadow: inset 0 0 15px rgba(0, 255, 156, 0.1),
+                0 0 15px rgba(0, 255, 156, 0.2);
+  }
+
+  .neon-text {
+    text-shadow: 0 0 8px rgba(0, 255, 156, 0.6), 0 0 15px rgba(0, 255, 156, 0.4);
+  }
+
+  .neon-text-purple {
+    text-shadow: 0 0 8px rgba(176, 38, 255, 0.6), 0 0 15px rgba(176, 38, 255, 0.4);
+  }
+
+  /* Parallax Particle effect */
+  .particles-container {
+    position: absolute;
+    inset: -50%;
+    z-index: 0;
+    pointer-events: none;
+    background: radial-gradient(circle, transparent 20%, #050505 120%);
+  }
+
+  .scanlines {
+    background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0) 50%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.2));
+    background-size: 100% 4px;
+    animation: scan-move 10s linear infinite;
+  }
+
+  .glitch-anim {
+    animation: glitch 3s infinite;
+  }
+
+  .glitch-heavy {
+    animation: glitch-heavy 0.2s cubic-bezier(.25, .46, .45, .94) both infinite;
+  }
+
+  .audio-bar {
+    animation: sound-pulse 1s -10ms linear infinite alternate;
+  }
+}
+
+@keyframes scan-move {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(100vh); }
+}
+
+@keyframes glitch {
+  0% { transform: translate(0) }
+  20% { transform: translate(-2px, 2px) }
+  40% { transform: translate(-2px, -2px) }
+  60% { transform: translate(2px, 2px) }
+  80% { transform: translate(2px, -2px) }
+  100% { transform: translate(0) }
+}
+
+@keyframes glitch-heavy {
+  new { transform: translate(0); filter: hue-rotate(0deg); }
+  20% { transform: translate(-5px, 5px); filter: hue-rotate(90deg); }
+  40% { transform: translate(-5px, -5px); filter: hue-rotate(-90deg); }
+  60% { transform: translate(5px, 5px); filter: saturate(3); }
+  80% { transform: translate(5px, -5px); filter: invert(0.2); }
+  100% { transform: translate(0); filter: hue-rotate(0deg); }
+}
+
+@keyframes sound-pulse {
+  0% { transform: scaleY(0.2); transform-origin: bottom; opacity: 0.5;}
+  100% { transform: scaleY(1); transform-origin: bottom; opacity: 1;}
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 255, 156, 0.4);
+}
